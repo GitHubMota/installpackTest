@@ -304,21 +304,10 @@ namespace WindowsFormsApplication1
 
         // TO DO 
         //########################## General ######################################
-
+        int index = 0;
         private void button_Next_Click(object sender, EventArgs e)
         {
-            if (!File.Exists(this.textBox_Path.Text))
-            {
-                MessageBox.Show("Invalid Path");
-                return;
-            }
-            if (comboBox_OS.SelectedItem == null)
-            {
-                MessageBox.Show("Win system not selected");
-                return;
-
-            }
-            GroupBox_1.Visible = false;
+            tabControl1.SelectedIndex = (index++)%tabControl1.TabPages.Count;
 
         }
 
@@ -410,6 +399,21 @@ namespace WindowsFormsApplication1
         {
             BrowserHelper.OpenDefaultBrowserUrl(textBox_https.Text);
             BrowserHelper.OpenDefaultBrowserUrl(textBox_http.Text);
+        }
+
+        private void fileSystemWatcher1_Changed(object sender, FileSystemEventArgs e)
+        {
+            MessageBox.Show(e.FullPath+"; "+e.Name);
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void fileSystemWatcher1_Renamed(object sender, RenamedEventArgs e)
+        {
+            MessageBox.Show(e.Name+" "+e.OldName+" "+e.Name);
         }
     }
 }
