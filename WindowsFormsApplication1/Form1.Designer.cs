@@ -28,24 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ColumnHeader NO;
-            this.buttonOpenFolder = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.buttonCheck = new System.Windows.Forms.Button();
-            this.listViewOutput = new System.Windows.Forms.ListView();
-            this.file = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Certificate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.TimeStamp = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Copyright = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.FileVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog2 = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog3 = new System.Windows.Forms.SaveFileDialog();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.button_Clear = new System.Windows.Forms.Button();
             this.GroupBox_1 = new System.Windows.Forms.GroupBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox_edge = new System.Windows.Forms.CheckBox();
+            this.checkBox_ie = new System.Windows.Forms.CheckBox();
             this.textBox_http = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox_https = new System.Windows.Forms.TextBox();
@@ -53,8 +42,6 @@
             this.checkBox_Firefox = new System.Windows.Forms.CheckBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.checkBox_Chrome = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox_OS = new System.Windows.Forms.ComboBox();
             this.textBox_Path = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button_Edge = new System.Windows.Forms.Button();
@@ -65,116 +52,58 @@
             this.GroupBox_2 = new System.Windows.Forms.GroupBox();
             this.button_back = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.dirTextBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            NO = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TextBox_ServiceDir_Path = new System.Windows.Forms.TextBox();
+            this.TextBox_Installed_Path = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.TextBox_StartMenu = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.TextBox_UserPath = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.richTextBox_ServiceDir = new System.Windows.Forms.RichTextBox();
+            this.richTextBox_InstalledDir = new System.Windows.Forms.RichTextBox();
+            this.richTextBox_startMenu = new System.Windows.Forms.RichTextBox();
+            this.richTextBox_UserPath = new System.Windows.Forms.RichTextBox();
+            this.fileSystemWatcher2 = new System.IO.FileSystemWatcher();
+            this.fileSystemWatcher3 = new System.IO.FileSystemWatcher();
+            this.fileSystemWatcher4 = new System.IO.FileSystemWatcher();
+            this.button_ServiceDir = new System.Windows.Forms.Button();
+            this.button_InstalledDir = new System.Windows.Forms.Button();
+            this.button_StartMenu = new System.Windows.Forms.Button();
+            this.button_UserPath = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Note_box = new System.Windows.Forms.RichTextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.GroupBox_1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
-            this.tabControl1.SuspendLayout();
+            this.GroupBox_2.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher4)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // NO
-            // 
-            NO.Text = "NO";
-            NO.Width = 32;
-            // 
-            // buttonOpenFolder
-            // 
-            this.buttonOpenFolder.Location = new System.Drawing.Point(762, 46);
-            this.buttonOpenFolder.Name = "buttonOpenFolder";
-            this.buttonOpenFolder.Size = new System.Drawing.Size(83, 21);
-            this.buttonOpenFolder.TabIndex = 0;
-            this.buttonOpenFolder.Text = "Open folder";
-            this.buttonOpenFolder.UseVisualStyleBackColor = true;
-            this.buttonOpenFolder.Click += new System.EventHandler(this.buttonOpenFolder_Click);
-            // 
-            // buttonCheck
-            // 
-            this.buttonCheck.Location = new System.Drawing.Point(851, 46);
-            this.buttonCheck.Name = "buttonCheck";
-            this.buttonCheck.Size = new System.Drawing.Size(83, 21);
-            this.buttonCheck.TabIndex = 0;
-            this.buttonCheck.Text = "Check";
-            this.buttonCheck.UseVisualStyleBackColor = true;
-            this.buttonCheck.Click += new System.EventHandler(this.buttonCheck_Click);
-            // 
-            // listViewOutput
-            // 
-            this.listViewOutput.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            NO,
-            this.file,
-            this.Certificate,
-            this.TimeStamp,
-            this.Copyright,
-            this.FileVersion});
-            this.listViewOutput.FullRowSelect = true;
-            this.listViewOutput.GridLines = true;
-            this.listViewOutput.Location = new System.Drawing.Point(656, 365);
-            this.listViewOutput.Name = "listViewOutput";
-            this.listViewOutput.Size = new System.Drawing.Size(261, 168);
-            this.listViewOutput.TabIndex = 4;
-            this.listViewOutput.UseCompatibleStateImageBehavior = false;
-            this.listViewOutput.View = System.Windows.Forms.View.Details;
-            this.listViewOutput.SelectedIndexChanged += new System.EventHandler(this.listViewOutput_SelectedIndexChanged);
-            // 
-            // file
-            // 
-            this.file.Text = "File";
-            this.file.Width = 100;
-            // 
-            // Certificate
-            // 
-            this.Certificate.Text = "(No.) Cert.";
-            this.Certificate.Width = 218;
-            // 
-            // TimeStamp
-            // 
-            this.TimeStamp.Text = "TimeStamp";
-            this.TimeStamp.Width = 250;
-            // 
-            // Copyright
-            // 
-            this.Copyright.Text = "Copyright";
-            this.Copyright.Width = 160;
-            // 
-            // FileVersion
-            // 
-            this.FileVersion.Text = "FileVersion";
-            this.FileVersion.Width = 102;
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.BackColor = System.Drawing.SystemColors.Control;
-            this.buttonSave.Location = new System.Drawing.Point(936, 153);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(44, 29);
-            this.buttonSave.TabIndex = 5;
-            this.buttonSave.Text = "Save";
-            this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
-            // 
-            // button_Clear
-            // 
-            this.button_Clear.Location = new System.Drawing.Point(936, 96);
-            this.button_Clear.Margin = new System.Windows.Forms.Padding(2);
-            this.button_Clear.Name = "button_Clear";
-            this.button_Clear.Size = new System.Drawing.Size(44, 29);
-            this.button_Clear.TabIndex = 6;
-            this.button_Clear.Text = "Clear";
-            this.button_Clear.UseVisualStyleBackColor = false;
-            this.button_Clear.Click += new System.EventHandler(this.Button_Clear);
             // 
             // GroupBox_1
             // 
-            this.GroupBox_1.Controls.Add(this.checkBox2);
-            this.GroupBox_1.Controls.Add(this.checkBox1);
+            this.GroupBox_1.Controls.Add(this.checkBox_edge);
+            this.GroupBox_1.Controls.Add(this.checkBox_ie);
             this.GroupBox_1.Controls.Add(this.textBox_http);
             this.GroupBox_1.Controls.Add(this.textBox6);
             this.GroupBox_1.Controls.Add(this.textBox_https);
@@ -182,79 +111,70 @@
             this.GroupBox_1.Controls.Add(this.checkBox_Firefox);
             this.GroupBox_1.Controls.Add(this.textBox3);
             this.GroupBox_1.Controls.Add(this.checkBox_Chrome);
-            this.GroupBox_1.Controls.Add(this.textBox1);
-            this.GroupBox_1.Controls.Add(this.comboBox_OS);
             this.GroupBox_1.Controls.Add(this.textBox_Path);
             this.GroupBox_1.Controls.Add(this.textBox2);
-            this.GroupBox_1.Location = new System.Drawing.Point(5, 2);
-            this.GroupBox_1.Margin = new System.Windows.Forms.Padding(2);
+            this.GroupBox_1.Location = new System.Drawing.Point(6, 22);
             this.GroupBox_1.Name = "GroupBox_1";
-            this.GroupBox_1.Padding = new System.Windows.Forms.Padding(2);
-            this.GroupBox_1.Size = new System.Drawing.Size(350, 248);
+            this.GroupBox_1.Size = new System.Drawing.Size(511, 331);
             this.GroupBox_1.TabIndex = 8;
             this.GroupBox_1.TabStop = false;
             this.GroupBox_1.Text = "Step 1";
             this.GroupBox_1.VisibleChanged += new System.EventHandler(this.Goupbox1_VisibleChanged);
             // 
-            // checkBox2
+            // checkBox_edge
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(191, 124);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(48, 16);
-            this.checkBox2.TabIndex = 12;
-            this.checkBox2.Text = "Edge";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox_edge.AutoSize = true;
+            this.checkBox_edge.Location = new System.Drawing.Point(255, 165);
+            this.checkBox_edge.Name = "checkBox_edge";
+            this.checkBox_edge.Size = new System.Drawing.Size(63, 21);
+            this.checkBox_edge.TabIndex = 12;
+            this.checkBox_edge.Text = "Edge";
+            this.checkBox_edge.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // checkBox_ie
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(144, 124);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(36, 16);
-            this.checkBox1.TabIndex = 11;
-            this.checkBox1.Text = "IE";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox_ie.AutoSize = true;
+            this.checkBox_ie.Location = new System.Drawing.Point(192, 165);
+            this.checkBox_ie.Name = "checkBox_ie";
+            this.checkBox_ie.Size = new System.Drawing.Size(42, 21);
+            this.checkBox_ie.TabIndex = 11;
+            this.checkBox_ie.Text = "IE";
+            this.checkBox_ie.UseVisualStyleBackColor = true;
             // 
             // textBox_http
             // 
-            this.textBox_http.Location = new System.Drawing.Point(43, 87);
-            this.textBox_http.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_http.Location = new System.Drawing.Point(57, 116);
             this.textBox_http.Name = "textBox_http";
-            this.textBox_http.Size = new System.Drawing.Size(278, 21);
+            this.textBox_http.Size = new System.Drawing.Size(369, 22);
             this.textBox_http.TabIndex = 10;
             // 
             // textBox6
             // 
+            this.textBox6.BackColor = System.Drawing.SystemColors.HighlightText;
             this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox6.Location = new System.Drawing.Point(4, 89);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox6.Location = new System.Drawing.Point(5, 119);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(34, 14);
+            this.textBox6.Size = new System.Drawing.Size(46, 15);
             this.textBox6.TabIndex = 9;
             this.textBox6.Text = "Http:";
             // 
             // textBox_https
             // 
             this.textBox_https.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.textBox_https.Location = new System.Drawing.Point(43, 68);
-            this.textBox_https.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_https.Location = new System.Drawing.Point(57, 91);
             this.textBox_https.Name = "textBox_https";
-            this.textBox_https.Size = new System.Drawing.Size(278, 21);
+            this.textBox_https.Size = new System.Drawing.Size(369, 22);
             this.textBox_https.TabIndex = 8;
-            this.textBox_https.TextChanged += new System.EventHandler(this.textBox_https_TextChanged);
             // 
             // textBox4
             // 
+            this.textBox4.BackColor = System.Drawing.SystemColors.HighlightText;
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Location = new System.Drawing.Point(4, 70);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox4.Location = new System.Drawing.Point(5, 94);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(34, 14);
+            this.textBox4.Size = new System.Drawing.Size(46, 15);
             this.textBox4.TabIndex = 7;
             this.textBox4.Text = "Https:";
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
@@ -262,62 +182,39 @@
             // checkBox_Firefox
             // 
             this.checkBox_Firefox.AutoSize = true;
-            this.checkBox_Firefox.Location = new System.Drawing.Point(76, 124);
-            this.checkBox_Firefox.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox_Firefox.Location = new System.Drawing.Point(102, 165);
             this.checkBox_Firefox.Name = "checkBox_Firefox";
-            this.checkBox_Firefox.Size = new System.Drawing.Size(66, 16);
+            this.checkBox_Firefox.Size = new System.Drawing.Size(72, 21);
             this.checkBox_Firefox.TabIndex = 6;
             this.checkBox_Firefox.Text = "Firefox";
             this.checkBox_Firefox.UseVisualStyleBackColor = true;
             // 
             // textBox3
             // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.HighlightText;
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Location = new System.Drawing.Point(4, 108);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox3.Location = new System.Drawing.Point(6, 144);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(220, 14);
+            this.textBox3.Size = new System.Drawing.Size(242, 15);
             this.textBox3.TabIndex = 5;
             this.textBox3.Text = "Select browser explorer(s) to use:";
             // 
             // checkBox_Chrome
             // 
             this.checkBox_Chrome.AutoSize = true;
-            this.checkBox_Chrome.Location = new System.Drawing.Point(4, 124);
-            this.checkBox_Chrome.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox_Chrome.Location = new System.Drawing.Point(6, 165);
             this.checkBox_Chrome.Name = "checkBox_Chrome";
-            this.checkBox_Chrome.Size = new System.Drawing.Size(60, 16);
+            this.checkBox_Chrome.Size = new System.Drawing.Size(79, 21);
             this.checkBox_Chrome.TabIndex = 4;
             this.checkBox_Chrome.Text = "Chrome";
             this.checkBox_Chrome.UseVisualStyleBackColor = true;
             // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(4, 45);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(125, 14);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "Select Win OS:";
-            // 
-            // comboBox_OS
-            // 
-            this.comboBox_OS.FormattingEnabled = true;
-            this.comboBox_OS.Location = new System.Drawing.Point(132, 40);
-            this.comboBox_OS.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox_OS.Name = "comboBox_OS";
-            this.comboBox_OS.Size = new System.Drawing.Size(92, 20);
-            this.comboBox_OS.TabIndex = 2;
-            // 
             // textBox_Path
             // 
-            this.textBox_Path.Location = new System.Drawing.Point(132, 13);
-            this.textBox_Path.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_Path.Location = new System.Drawing.Point(176, 17);
             this.textBox_Path.Name = "textBox_Path";
-            this.textBox_Path.Size = new System.Drawing.Size(188, 21);
+            this.textBox_Path.Size = new System.Drawing.Size(250, 22);
             this.textBox_Path.TabIndex = 1;
             this.textBox_Path.TextChanged += new System.EventHandler(this.textBox_Path_TextChanged);
             this.textBox_Path.DragDrop += new System.Windows.Forms.DragEventHandler(this.PathTextBox_DragDrop);
@@ -326,21 +223,20 @@
             // 
             // textBox2
             // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.HighlightText;
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(4, 15);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox2.Location = new System.Drawing.Point(5, 20);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(125, 14);
+            this.textBox2.Size = new System.Drawing.Size(167, 15);
             this.textBox2.TabIndex = 0;
             this.textBox2.Text = "Installation Package Path：";
             // 
             // button_Edge
             // 
-            this.button_Edge.Location = new System.Drawing.Point(307, 418);
-            this.button_Edge.Margin = new System.Windows.Forms.Padding(2);
+            this.button_Edge.Location = new System.Drawing.Point(413, 28);
             this.button_Edge.Name = "button_Edge";
-            this.button_Edge.Size = new System.Drawing.Size(58, 38);
+            this.button_Edge.Size = new System.Drawing.Size(78, 50);
             this.button_Edge.TabIndex = 16;
             this.button_Edge.Text = "Open Edge";
             this.button_Edge.UseVisualStyleBackColor = true;
@@ -348,10 +244,9 @@
             // 
             // button_IE
             // 
-            this.button_IE.Location = new System.Drawing.Point(213, 418);
-            this.button_IE.Margin = new System.Windows.Forms.Padding(2);
+            this.button_IE.Location = new System.Drawing.Point(288, 28);
             this.button_IE.Name = "button_IE";
-            this.button_IE.Size = new System.Drawing.Size(58, 38);
+            this.button_IE.Size = new System.Drawing.Size(78, 50);
             this.button_IE.TabIndex = 15;
             this.button_IE.Text = "Open IE";
             this.button_IE.UseVisualStyleBackColor = true;
@@ -359,10 +254,9 @@
             // 
             // button_firefox
             // 
-            this.button_firefox.Location = new System.Drawing.Point(121, 418);
-            this.button_firefox.Margin = new System.Windows.Forms.Padding(2);
+            this.button_firefox.Location = new System.Drawing.Point(165, 28);
             this.button_firefox.Name = "button_firefox";
-            this.button_firefox.Size = new System.Drawing.Size(58, 38);
+            this.button_firefox.Size = new System.Drawing.Size(78, 50);
             this.button_firefox.TabIndex = 14;
             this.button_firefox.Text = "Open Firefox";
             this.button_firefox.UseVisualStyleBackColor = true;
@@ -370,10 +264,9 @@
             // 
             // button_chrome
             // 
-            this.button_chrome.Location = new System.Drawing.Point(33, 418);
-            this.button_chrome.Margin = new System.Windows.Forms.Padding(2);
+            this.button_chrome.Location = new System.Drawing.Point(48, 28);
             this.button_chrome.Name = "button_chrome";
-            this.button_chrome.Size = new System.Drawing.Size(58, 38);
+            this.button_chrome.Size = new System.Drawing.Size(78, 50);
             this.button_chrome.TabIndex = 13;
             this.button_chrome.Text = "Open Chrome";
             this.button_chrome.UseVisualStyleBackColor = true;
@@ -381,10 +274,9 @@
             // 
             // button_Next
             // 
-            this.button_Next.Location = new System.Drawing.Point(324, 345);
-            this.button_Next.Margin = new System.Windows.Forms.Padding(2);
+            this.button_Next.Location = new System.Drawing.Point(432, 465);
             this.button_Next.Name = "button_Next";
-            this.button_Next.Size = new System.Drawing.Size(71, 28);
+            this.button_Next.Size = new System.Drawing.Size(85, 33);
             this.button_Next.TabIndex = 9;
             this.button_Next.Text = "Next";
             this.button_Next.UseVisualStyleBackColor = true;
@@ -392,11 +284,10 @@
             // 
             // GroupBox_2
             // 
-            this.GroupBox_2.Location = new System.Drawing.Point(501, 349);
-            this.GroupBox_2.Margin = new System.Windows.Forms.Padding(2);
+            this.GroupBox_2.Controls.Add(this.button4);
+            this.GroupBox_2.Location = new System.Drawing.Point(12, 11);
             this.GroupBox_2.Name = "GroupBox_2";
-            this.GroupBox_2.Padding = new System.Windows.Forms.Padding(2);
-            this.GroupBox_2.Size = new System.Drawing.Size(371, 214);
+            this.GroupBox_2.Size = new System.Drawing.Size(535, 364);
             this.GroupBox_2.TabIndex = 10;
             this.GroupBox_2.TabStop = false;
             this.GroupBox_2.Text = "Step 2 Env Clear";
@@ -404,10 +295,9 @@
             // 
             // button_back
             // 
-            this.button_back.Location = new System.Drawing.Point(254, 349);
-            this.button_back.Margin = new System.Windows.Forms.Padding(2);
+            this.button_back.Location = new System.Drawing.Point(339, 465);
             this.button_back.Name = "button_back";
-            this.button_back.Size = new System.Drawing.Size(56, 25);
+            this.button_back.Size = new System.Drawing.Size(75, 33);
             this.button_back.TabIndex = 11;
             this.button_back.Text = "Back";
             this.button_back.UseVisualStyleBackColor = true;
@@ -417,127 +307,366 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // dirTextBox
-            // 
-            this.dirTextBox.AllowDrop = true;
-            this.dirTextBox.Location = new System.Drawing.Point(146, 47);
-            this.dirTextBox.Name = "dirTextBox";
-            this.dirTextBox.Size = new System.Drawing.Size(611, 21);
-            this.dirTextBox.TabIndex = 1;
-            this.dirTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.dirTextBox_DragDrop);
-            this.dirTextBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.dirTextBox_Dragenter);
-            this.dirTextBox.DoubleClick += new System.EventHandler(this.dirTextBox_DoubleClick);
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(184, 349);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(246, 465);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 25);
+            this.button1.Size = new System.Drawing.Size(75, 33);
             this.button1.TabIndex = 12;
             this.button1.Text = "Skip";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // fileSystemWatcher1
+            // tabControl
             // 
-            this.fileSystemWatcher1.EnableRaisingEvents = true;
-            this.fileSystemWatcher1.IncludeSubdirectories = true;
-            this.fileSystemWatcher1.Path = "C:\\Windows\\System32\\Dynamsoft";
-            this.fileSystemWatcher1.SynchronizingObject = this;
-            this.fileSystemWatcher1.Changed += new System.IO.FileSystemEventHandler(this.fileSystemWatcher1_Changed);
-            this.fileSystemWatcher1.Renamed += new System.IO.RenamedEventHandler(this.fileSystemWatcher1_Renamed);
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(525, 122);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(309, 138);
-            this.richTextBox1.TabIndex = 13;
-            this.richTextBox1.Text = "";
-            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(270, 46);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(515, 267);
-            this.tabControl1.TabIndex = 17;
+            this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Location = new System.Drawing.Point(10, 2);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(567, 452);
+            this.tabControl.TabIndex = 17;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.GroupBox_1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(507, 241);
+            this.tabPage1.Size = new System.Drawing.Size(559, 423);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Controls.Add(this.GroupBox_2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(507, 241);
+            this.tabPage2.Size = new System.Drawing.Size(559, 423);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tabPage3);
+            this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Location = new System.Drawing.Point(639, 12);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(625, 700);
+            this.tabControl2.TabIndex = 18;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.button_UserPath);
+            this.tabPage3.Controls.Add(this.button_StartMenu);
+            this.tabPage3.Controls.Add(this.button_InstalledDir);
+            this.tabPage3.Controls.Add(this.button_ServiceDir);
+            this.tabPage3.Controls.Add(this.richTextBox_UserPath);
+            this.tabPage3.Controls.Add(this.richTextBox_startMenu);
+            this.tabPage3.Controls.Add(this.richTextBox_InstalledDir);
+            this.tabPage3.Controls.Add(this.richTextBox_ServiceDir);
+            this.tabPage3.Controls.Add(this.TextBox_UserPath);
+            this.tabPage3.Controls.Add(this.textBox9);
+            this.tabPage3.Controls.Add(this.TextBox_StartMenu);
+            this.tabPage3.Controls.Add(this.textBox8);
+            this.tabPage3.Controls.Add(this.TextBox_Installed_Path);
+            this.tabPage3.Controls.Add(this.textBox7);
+            this.tabPage3.Controls.Add(this.TextBox_ServiceDir_Path);
+            this.tabPage3.Controls.Add(this.textBox1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(617, 671);
+            this.tabPage3.TabIndex = 0;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(192, 71);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // fileSystemWatcher1
+            // 
+            this.fileSystemWatcher1.EnableRaisingEvents = true;
+            this.fileSystemWatcher1.SynchronizingObject = this;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Location = new System.Drawing.Point(27, 29);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(90, 15);
+            this.textBox1.TabIndex = 13;
+            this.textBox1.Text = "Service Path：";
+            // 
+            // TextBox_ServiceDir_Path
+            // 
+            this.TextBox_ServiceDir_Path.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.TextBox_ServiceDir_Path.Location = new System.Drawing.Point(112, 22);
+            this.TextBox_ServiceDir_Path.Name = "TextBox_ServiceDir_Path";
+            this.TextBox_ServiceDir_Path.Size = new System.Drawing.Size(369, 22);
+            this.TextBox_ServiceDir_Path.TabIndex = 13;
+            this.TextBox_ServiceDir_Path.TextChanged += new System.EventHandler(this.TextBox_ServiceDir_Path_TextChanged);
+            // 
+            // TextBox_Installed_Path
+            // 
+            this.TextBox_Installed_Path.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.TextBox_Installed_Path.Location = new System.Drawing.Point(124, 179);
+            this.TextBox_Installed_Path.Name = "TextBox_Installed_Path";
+            this.TextBox_Installed_Path.Size = new System.Drawing.Size(369, 22);
+            this.TextBox_Installed_Path.TabIndex = 14;
+            this.TextBox_Installed_Path.TextChanged += new System.EventHandler(this.TextBox_Installed_Path_TextChanged);
+            // 
+            // textBox7
+            // 
+            this.textBox7.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox7.Location = new System.Drawing.Point(31, 186);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(90, 15);
+            this.textBox7.TabIndex = 15;
+            this.textBox7.Text = "Installed Path：";
+            // 
+            // TextBox_StartMenu
+            // 
+            this.TextBox_StartMenu.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.TextBox_StartMenu.Location = new System.Drawing.Point(120, 343);
+            this.TextBox_StartMenu.Name = "TextBox_StartMenu";
+            this.TextBox_StartMenu.Size = new System.Drawing.Size(369, 22);
+            this.TextBox_StartMenu.TabIndex = 16;
+            this.TextBox_StartMenu.TextChanged += new System.EventHandler(this.TextBox_StartMenu_TextChanged);
+            // 
+            // textBox8
+            // 
+            this.textBox8.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox8.Location = new System.Drawing.Point(27, 350);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(90, 15);
+            this.textBox8.TabIndex = 17;
+            this.textBox8.Text = "Start Menu:";
+            // 
+            // TextBox_UserPath
+            // 
+            this.TextBox_UserPath.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.TextBox_UserPath.Location = new System.Drawing.Point(127, 505);
+            this.TextBox_UserPath.Name = "TextBox_UserPath";
+            this.TextBox_UserPath.Size = new System.Drawing.Size(369, 22);
+            this.TextBox_UserPath.TabIndex = 18;
+            this.TextBox_UserPath.TextChanged += new System.EventHandler(this.TextBox_UserPath_TextChanged);
+            // 
+            // textBox9
+            // 
+            this.textBox9.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox9.Location = new System.Drawing.Point(34, 512);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
+            this.textBox9.Size = new System.Drawing.Size(90, 15);
+            this.textBox9.TabIndex = 19;
+            this.textBox9.Text = "User Path:";
+            // 
+            // richTextBox_ServiceDir
+            // 
+            this.richTextBox_ServiceDir.Location = new System.Drawing.Point(31, 66);
+            this.richTextBox_ServiceDir.Name = "richTextBox_ServiceDir";
+            this.richTextBox_ServiceDir.Size = new System.Drawing.Size(430, 105);
+            this.richTextBox_ServiceDir.TabIndex = 20;
+            this.richTextBox_ServiceDir.Text = "";
+            // 
+            // richTextBox_InstalledDir
+            // 
+            this.richTextBox_InstalledDir.Location = new System.Drawing.Point(31, 220);
+            this.richTextBox_InstalledDir.Name = "richTextBox_InstalledDir";
+            this.richTextBox_InstalledDir.Size = new System.Drawing.Size(430, 105);
+            this.richTextBox_InstalledDir.TabIndex = 21;
+            this.richTextBox_InstalledDir.Text = "";
+            // 
+            // richTextBox_startMenu
+            // 
+            this.richTextBox_startMenu.Location = new System.Drawing.Point(31, 385);
+            this.richTextBox_startMenu.Name = "richTextBox_startMenu";
+            this.richTextBox_startMenu.Size = new System.Drawing.Size(430, 105);
+            this.richTextBox_startMenu.TabIndex = 22;
+            this.richTextBox_startMenu.Text = "";
+            // 
+            // richTextBox_UserPath
+            // 
+            this.richTextBox_UserPath.Location = new System.Drawing.Point(31, 549);
+            this.richTextBox_UserPath.Name = "richTextBox_UserPath";
+            this.richTextBox_UserPath.Size = new System.Drawing.Size(430, 105);
+            this.richTextBox_UserPath.TabIndex = 23;
+            this.richTextBox_UserPath.Text = "";
+            // 
+            // fileSystemWatcher2
+            // 
+            this.fileSystemWatcher2.EnableRaisingEvents = true;
+            this.fileSystemWatcher2.SynchronizingObject = this;
+            // 
+            // fileSystemWatcher3
+            // 
+            this.fileSystemWatcher3.EnableRaisingEvents = true;
+            this.fileSystemWatcher3.SynchronizingObject = this;
+            // 
+            // fileSystemWatcher4
+            // 
+            this.fileSystemWatcher4.EnableRaisingEvents = true;
+            this.fileSystemWatcher4.SynchronizingObject = this;
+            // 
+            // button_ServiceDir
+            // 
+            this.button_ServiceDir.Location = new System.Drawing.Point(499, 11);
+            this.button_ServiceDir.Name = "button_ServiceDir";
+            this.button_ServiceDir.Size = new System.Drawing.Size(59, 33);
+            this.button_ServiceDir.TabIndex = 19;
+            this.button_ServiceDir.Text = "Open";
+            this.button_ServiceDir.UseVisualStyleBackColor = true;
+            this.button_ServiceDir.Click += new System.EventHandler(this.button_ServiceDir_Click);
+            // 
+            // button_InstalledDir
+            // 
+            this.button_InstalledDir.Location = new System.Drawing.Point(499, 174);
+            this.button_InstalledDir.Name = "button_InstalledDir";
+            this.button_InstalledDir.Size = new System.Drawing.Size(59, 33);
+            this.button_InstalledDir.TabIndex = 24;
+            this.button_InstalledDir.Text = "Open";
+            this.button_InstalledDir.UseVisualStyleBackColor = true;
+            this.button_InstalledDir.Click += new System.EventHandler(this.button_InstalledDir_Click);
+            // 
+            // button_StartMenu
+            // 
+            this.button_StartMenu.Location = new System.Drawing.Point(499, 332);
+            this.button_StartMenu.Name = "button_StartMenu";
+            this.button_StartMenu.Size = new System.Drawing.Size(59, 33);
+            this.button_StartMenu.TabIndex = 25;
+            this.button_StartMenu.Text = "Open";
+            this.button_StartMenu.UseVisualStyleBackColor = true;
+            this.button_StartMenu.Click += new System.EventHandler(this.button_StartMenu_Click);
+            // 
+            // button_UserPath
+            // 
+            this.button_UserPath.Location = new System.Drawing.Point(506, 494);
+            this.button_UserPath.Name = "button_UserPath";
+            this.button_UserPath.Size = new System.Drawing.Size(64, 33);
+            this.button_UserPath.TabIndex = 26;
+            this.button_UserPath.Text = "Open";
+            this.button_UserPath.UseVisualStyleBackColor = true;
+            this.button_UserPath.Click += new System.EventHandler(this.button_UserPath_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button_IE);
+            this.groupBox1.Controls.Add(this.button_chrome);
+            this.groupBox1.Controls.Add(this.button_firefox);
+            this.groupBox1.Controls.Add(this.button_Edge);
+            this.groupBox1.Location = new System.Drawing.Point(26, 504);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(547, 115);
+            this.groupBox1.TabIndex = 19;
+            this.groupBox1.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button3);
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.Note_box);
+            this.groupBox2.Location = new System.Drawing.Point(26, 625);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(607, 199);
+            this.groupBox2.TabIndex = 20;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Note and Comment";
+            // 
+            // Note_box
+            // 
+            this.Note_box.Location = new System.Drawing.Point(6, 21);
+            this.Note_box.Name = "Note_box";
+            this.Note_box.Size = new System.Drawing.Size(485, 134);
+            this.Note_box.TabIndex = 0;
+            this.Note_box.Text = "";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(497, 31);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(64, 38);
+            this.button2.TabIndex = 21;
+            this.button2.Text = "Save";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button_SaveNote_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(497, 86);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(64, 38);
+            this.button3.TabIndex = 22;
+            this.button3.Text = "Clear";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button_ClearNote_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(6, 28);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 0;
+            this.button4.Text = "Install";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(991, 564);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.button_Edge);
+            this.ClientSize = new System.Drawing.Size(1321, 862);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.tabControl2);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.button_IE);
             this.Controls.Add(this.button_back);
-            this.Controls.Add(this.button_firefox);
-            this.Controls.Add(this.GroupBox_2);
-            this.Controls.Add(this.button_chrome);
             this.Controls.Add(this.button_Next);
-            this.Controls.Add(this.button_Clear);
-            this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.listViewOutput);
-            this.Controls.Add(this.dirTextBox);
-            this.Controls.Add(this.buttonCheck);
-            this.Controls.Add(this.buttonOpenFolder);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Installation Package Test";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.GroupBox_1.ResumeLayout(false);
             this.GroupBox_1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
-            this.tabControl1.ResumeLayout(false);
+            this.GroupBox_2.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher4)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button buttonOpenFolder;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.Button buttonCheck;
-        private System.Windows.Forms.ListView listViewOutput;
-        private System.Windows.Forms.ColumnHeader Certificate;
-        private System.Windows.Forms.ColumnHeader file;
-        private System.Windows.Forms.ColumnHeader FileVersion;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog2;
         private System.Windows.Forms.SaveFileDialog saveFileDialog3;
-        private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.ColumnHeader Copyright;
-        private System.Windows.Forms.ColumnHeader TimeStamp;
-        private System.Windows.Forms.Button button_Clear;
         private System.Windows.Forms.GroupBox GroupBox_1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox_Path;
@@ -545,9 +674,6 @@
         private System.Windows.Forms.GroupBox GroupBox_2;
         private System.Windows.Forms.Button button_back;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.TextBox dirTextBox;
-        private System.Windows.Forms.ComboBox comboBox_OS;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.CheckBox checkBox_Firefox;
         private System.Windows.Forms.TextBox textBox3;
@@ -560,13 +686,40 @@
         private System.Windows.Forms.Button button_IE;
         private System.Windows.Forms.Button button_firefox;
         private System.Windows.Forms.Button button_chrome;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.IO.FileSystemWatcher fileSystemWatcher1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.CheckBox checkBox_edge;
+        private System.Windows.Forms.CheckBox checkBox_ie;
+        private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TextBox TextBox_UserPath;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox TextBox_StartMenu;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox TextBox_Installed_Path;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox TextBox_ServiceDir_Path;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.IO.FileSystemWatcher fileSystemWatcher1;
+        private System.Windows.Forms.RichTextBox richTextBox_UserPath;
+        private System.Windows.Forms.RichTextBox richTextBox_startMenu;
+        private System.Windows.Forms.RichTextBox richTextBox_InstalledDir;
+        private System.Windows.Forms.RichTextBox richTextBox_ServiceDir;
+        private System.IO.FileSystemWatcher fileSystemWatcher2;
+        private System.IO.FileSystemWatcher fileSystemWatcher3;
+        private System.IO.FileSystemWatcher fileSystemWatcher4;
+        private System.Windows.Forms.Button button_ServiceDir;
+        private System.Windows.Forms.Button button_InstalledDir;
+        private System.Windows.Forms.Button button_StartMenu;
+        private System.Windows.Forms.Button button_UserPath;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.RichTextBox Note_box;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 

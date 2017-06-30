@@ -1,0 +1,10 @@
+F:\Installation_package_test\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+F:\Installation_package_test\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+F:\Installation_package_test\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+F:\Installation_package_test\WindowsFormsApplication1\obj\Debug\Interop.Shell32.dll
+F:\Installation_package_test\WindowsFormsApplication1\obj\Debug\InstallPkgHelper.csproj.ResolveComReference.cache
+F:\Installation_package_test\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+F:\Installation_package_test\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+F:\Installation_package_test\WindowsFormsApplication1\obj\Debug\InstallPkgHelper.csproj.GenerateResource.Cache
+F:\Installation_package_test\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+F:\Installation_package_test\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb

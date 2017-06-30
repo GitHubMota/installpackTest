@@ -20,14 +20,3 @@ F:\Installation_package_test\WindowsFormsApplication1\obj\Debug\FileInfoReader.c
 F:\Installation_package_test\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
 F:\Installation_package_test\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 F:\Installation_package_test\WindowsFormsApplication1\obj\Debug\FileInfoReader.csproj.GenerateResource.Cache
-D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
-D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\obj\Debug\Interop.Shell32.dll
-D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\obj\Debug\FileInfoReader.csproj.ResolveComReference.cache
-D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
-D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
-D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
-D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
-D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\obj\Debug\FileInfoReader.csprojResolveAssemblyReference.cache
-D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
-D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
-D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\obj\Debug\FileInfoReader.csproj.GenerateResource.Cache
