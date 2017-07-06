@@ -10,18 +10,13 @@ using System.Windows.Forms;
 //self
 using System.Diagnostics;
 using System.IO;
-using System.Collections;
-using System.Security.Cryptography.X509Certificates;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.Pkcs;
-using System.Reflection;
-using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.Win32;
 
 namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
+
         string ReportFolder = null;
         public Form1()
         {
@@ -43,7 +38,34 @@ namespace WindowsFormsApplication1
             string a = System.Security.Principal.WindowsIdentity.GetCurrent().Name.ToString();
             var Currentuser = a.Substring(a.LastIndexOf("\\") + 1);
             TextBox_UserPath.Text = "C:\\Users\\" + Currentuser + "\\AppData\\Roaming";
-            tabPage1.
+
+
+
+            //register monitor
+            Microsoft.Win32.RegistryKey _Key = Microsoft.Win32.Registry.CurrentUser;
+            //_Key = _Key.OpenSubKey("SoftWare");
+            //_Key = _Key.OpenSubKey("Microsoft");
+            //_Key = _Key.OpenSubKey("Windows");
+            //_Key = _Key.OpenSubKey("CurrentVersion");
+            //_Key = _Key.OpenSubKey("Test");
+            _Key = _Key.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Test");
+            MonitorWindowsReg T;
+            MonitorWindowsReg T2;
+
+            T = new MonitorWindowsReg(_Key);
+            T.UpReg += new MonitorWindowsReg.UpdataReg(T__UpdateReg);
+            T.Star();
+            Microsoft.Win32.RegistryKey _Key2 = Microsoft.Win32.Registry.CurrentUser;
+            _Key2 = _Key2.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Test\\22");
+            T2 = new MonitorWindowsReg(_Key2);
+            T2.UpReg += new MonitorWindowsReg.UpdataReg(T__UpdateReg);
+            T2.Star();
+
+        }
+        public void CreateMonitor(MonitorWindowsReg T, RegistryKey key)
+        {
+            T = new MonitorWindowsReg(key);
+            T.UpReg += new MonitorWindowsReg.UpdataReg(T__UpdateReg);
         }
 
         //step1 记下测试环境，操作系统，x86/x64, browser
@@ -70,75 +92,24 @@ namespace WindowsFormsApplication1
             }
             return "";
         }
-
-        // TO DO 
         //########################## General ######################################
-
-        private void button_Next_Click(object sender, EventArgs e)
-        {
-            if (!File.Exists(this.textBox_Path.Text))
-            {
-                MessageBox.Show("Invalid Path");
-                return;
-            }            
-             
-        }
-
-        private void button_back_Click(object sender, EventArgs e)
-        {
-            GroupBox_1.Visible = true;
-        }
         private void Form1_Load(object sender, EventArgs e)
-        {            
-        }
-        public uint StepNum()
-        {
-            if (GroupBox_1.Visible == true)
-                return 1;
-            else if (GroupBox_2.Visible == true)
-                return 2;
-            else
-                return 0;
-        }
-        private void Goupbox1_VisibleChanged(object sender, EventArgs e)
         {
             int osbit = 86;
-            if (GroupBox_1.Visible)
-                GroupBox_2.Visible = false;
-            else
+            string step1_report =   "c:\\note.rtf";
+            if (Directory.Exists("C:/Windows/SysWOW64"))
+                osbit = 64;
+            try
             {
-                GroupBox_2.Visible = true;
-                string step1_report = ReportFolder + "/Step1.txt";
-                if (Directory.Exists("C:/Windows/SysWOW64"))
-                    osbit = 64;
-                try
-                {
-                    System.IO.StreamWriter sw = new System.IO.StreamWriter(step1_report, false);
-                    sw.WriteLine("Environment info:" + FriendlyName() + "x" + osbit);
-                    sw.WriteLine("Browsers: ");
-                    if (checkBox_Chrome.Checked)//TODO   获取各浏览器的版本
-                    {
-                        sw.Write("Chrome; ");
-                    }
-                    if (checkBox_Firefox.Checked)
-                    {
-                        sw.Write("Firefox; ");
-                    }
-                    if (checkBox_ie.Checked)
-                    {
-                        var ieVersion = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Internet Explorer").GetValue("Version").ToString();
-                        sw.Write("IE:" + ieVersion + "; ");
-                    }
-                    if (checkBox_edge.Checked)
-                    {
-                        sw.Write("Edge.\n\n");
-                    }
-                    sw.Close();
-                }
-                catch { }
-
+                System.IO.StreamWriter sw = new System.IO.StreamWriter(step1_report, false);
+                sw.WriteLine("Environment info:" + FriendlyName() + "x" + osbit);                
+                sw.Close();
             }
+            catch { }
+
         }
+
+       
         //############## directory watcher###################################################
         //service directory
         private void fileSystemWatcher1_Changed(object sender, FileSystemEventArgs e)
@@ -210,7 +181,7 @@ namespace WindowsFormsApplication1
         {
             richTextBox_UserPath.AppendText(e.OldName + "----Renamed to----" + e.Name + "\n");
         }
-        //################################# Step  1 ############################################
+        //#############################################################################
         //installation package path 输入
         private void PathTextBox_DoubleClick(object sender, EventArgs e)
         {
@@ -241,50 +212,24 @@ namespace WindowsFormsApplication1
 
   //#########################################################
 
-        private void textBox_Path_TextChanged(object sender, EventArgs e)
-        {
-            ///create report folder
-            ReportFolder = string.Format(@"{0}\{1}", this.textBox_Path.Text.Substring(0, textBox_Path.Text.LastIndexOf("\\")), "Report_install_package");
-            System.IO.Directory.CreateDirectory(ReportFolder);
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox_https_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button_chrome_click(object sender, EventArgs e)
         {
             BrowserHelper.OpenBrowserUrl(textBox_https.Text);
-            BrowserHelper.OpenBrowserUrl(textBox_http.Text);
         }
 
         private void button_firefox_click(object sender, EventArgs e)
         {
             BrowserHelper.OpenFireFox(textBox_https.Text);
-            BrowserHelper.OpenFireFox(textBox_http.Text);
         }
 
         private void button_ie_click(object sender, EventArgs e)
         {
             BrowserHelper.OpenIe(textBox_https.Text);
-            BrowserHelper.OpenIe(textBox_http.Text);
         }
 
         private void button_edge_click(object sender, EventArgs e)
         {
             BrowserHelper.OpenDefaultBrowserUrl(textBox_https.Text);
-            BrowserHelper.OpenDefaultBrowserUrl(textBox_http.Text);
         }
 
         //button open folder#########################################################
@@ -326,9 +271,33 @@ namespace WindowsFormsApplication1
             fileSystemWatcher4.Path = TextBox_UserPath.Text;
         }
         // notebox################################################################
+        private string MergeRTF(string rtfFile1, string rtfFile2)
+        {
+            System.IO.FileStream fs1 = new System.IO.FileStream(rtfFile1, System.IO.FileMode.OpenOrCreate);
+            //System.IO.FileStream fs2 = new System.IO.FileStream(rtfFile2, System.IO.FileMode.OpenOrCreate);
+            RichTextBox richTextBox1 = new RichTextBox();
+            //RichTextBox richTextBox2 = new RichTextBox();
+            richTextBox1.LoadFile(fs1, RichTextBoxStreamType.PlainText);
+            //richTextBox2.LoadFile(fs2, RichTextBoxStreamType.PlainText);
+            fs1.Close();
+            //fs2.Close();
+
+            string f1 = richTextBox1.Rtf;
+            string f2 = rtfFile2;
+            string pre = @"{\rtf1";
+            string end = @"}";
+            return pre + f1 + f2 + end;
+        }
+
         private void button_SaveNote_Click(object sender, EventArgs e)
         {
-            Note_box.SaveFile(ReportFolder + "\\Step" + StepNum() + ".rtf", RichTextBoxStreamType.PlainText);
+            //Note_box.SaveFile( "c:\\.note_temp.rtf", RichTextBoxStreamType.PlainText);
+            //FileStream f = new FileStream("C:\\aa.rtf", FileMode.Create, FileAccess.Write);
+            //File.WriteAllText("D:\\123.rtf", Note_box.Rtf);
+            //File.AppendAllText("D:\\123.rtf", Note_box.Rtf);
+            RichTextBox richTextBox1 = new RichTextBox();
+            richTextBox1.Rtf = MergeRTF("c:\\note.rtf", Note_box.Rtf);
+            richTextBox1.SaveFile("c:\\note.rtf", RichTextBoxStreamType.PlainText);
         }
 
         private void button_ClearNote_Click(object sender, EventArgs e)
@@ -336,10 +305,83 @@ namespace WindowsFormsApplication1
             Note_box.Clear();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RegistryKey rk = Registry.CurrentUser;
+
+          
+            // Retrieve all the subkeys for the specified key.
+            String names = rk.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders").GetValue("My Music").ToString();
+                String a = System.Environment.SystemDirectory;
+            Note_box.AppendText("Subkeys of " + rk.Name);
+            Note_box.AppendText("-----------------------------------------------");
+            Note_box.AppendText(names);
+            Note_box.AppendText(a);
+              //  Console.ReadKey();
+        }
+        delegate void RegAppendTextCallback(string text);
+
+        private void RegAppendText(string text)
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (this.richTextBox_Reg.InvokeRequired)
+            {
+                RegAppendTextCallback d = new RegAppendTextCallback(RegAppendText);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                this.richTextBox_Reg.AppendText(text);
+            }
+        }
+        void T__UpdateReg(string OldText, object OldValue, string NewText, object NewValue)
+        {
+            object Old = OldValue;
+            object New = NewValue;
+            if (Old == null) Old = "";
+            if (New == null) New = "";
+
+            //create value
+            if (OldText == "" && NewText != "")
+            {
+                RegAppendText("Create new value: " + NewText+'\n');
+            }
+            else if (OldText != "" && NewText == "")
+            {
+                RegAppendText("Delete old value: " + OldText + '\n');
+            }
+            else if (OldText != "" && NewText == OldText)
+            {
+                RegAppendText("Data of "+NewText+ " update from "+ Old.ToString() + " to "+ New.ToString() + '\n');
+            }else
+            {
+                RegAppendText("NewText: " + NewText + "OldText: " + OldText + " OldValue: " + Old.ToString() + " NewValue: " + New.ToString() + '\n');
+            }
+                //richTextBox_Reg.AppendText();
+                //MessageBox.Show(OldText + ":" + Old.ToString(), NewText + ":" + New.ToString());
+        }
+
         private void button4_Click(object sender, EventArgs e)
         {
-
+  //          Microsoft.Win32.RegistryKey _Key = Microsoft.Win32.Registry.CurrentUser;
+  //          _Key = _Key.OpenSubKey("SoftWare");
+  //          _Key = _Key.OpenSubKey("Microsoft");
+  //          _Key = _Key.OpenSubKey("Windows");
+  //          _Key = _Key.OpenSubKey("CurrentVersion");
+  //          _Key = _Key.OpenSubKey("Test");
+  //          //_Key = _Key.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Test");
+  //          T = new MonitorWindowsReg(_Key);
+  //          T.UpReg += new MonitorWindowsReg.UpdataReg(T__UpdateReg);
+  //          T.Star();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+   //         T.Stop();
+        }
+
     }
 }
 

@@ -8,3 +8,14 @@ F:\Installation_package_test\WindowsFormsApplication1\obj\Debug\WindowsFormsAppl
 F:\Installation_package_test\WindowsFormsApplication1\obj\Debug\InstallPkgHelper.csproj.GenerateResource.Cache
 F:\Installation_package_test\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
 F:\Installation_package_test\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\obj\Debug\Interop.Shell32.dll
+D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\obj\Debug\InstallPkgHelper.csproj.ResolveComReference.cache
+D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\obj\Debug\InstallPkgHelper.csprojResolveAssemblyReference.cache
+D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\obj\Debug\InstallPkgHelper.csproj.GenerateResource.Cache
+D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+D:\Users\Administrator\Source\InstallRepos\installpackTest\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
