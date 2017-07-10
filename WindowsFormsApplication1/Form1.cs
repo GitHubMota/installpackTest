@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using Microsoft.Win32;
+using System.Collections;
+
 
 namespace WindowsFormsApplication1
 {
@@ -18,9 +20,15 @@ namespace WindowsFormsApplication1
     {
 
         string ReportFolder = null;
+        private Hashtable TS = new Hashtable();
+        String[] Reg = new String[] { "HKEY_CLASSES_ROOT", "HKEY_CURRENT_USER", "HKEY_LOCAL_MACHINE", "HKEY_USERS", "HKEY_CURRENT_CONFIG" };
+        private List<ComboBox> ComboBoxes = new List<ComboBox>();
+        private List<TextBox> TextBoxes = new List<TextBox>();
+        //MonitorWindowsReg T;
         public Form1()
         {
             InitializeComponent();
+
             if (Directory.Exists("C:\\Windows\\SysWOW64"))
                 TextBox_ServiceDir_Path.Text = "C:\\Windows\\SysWOW64";
             else
@@ -39,35 +47,161 @@ namespace WindowsFormsApplication1
             var Currentuser = a.Substring(a.LastIndexOf("\\") + 1);
             TextBox_UserPath.Text = "C:\\Users\\" + Currentuser + "\\AppData\\Roaming";
 
-
+            //Initial RegPath comboBox
+            ComboBoxes.Add(comboBox_RegPath1);
+            ComboBoxes.Add(comboBox_RegPath2);
+            ComboBoxes.Add(comboBox_RegPath3);
+            int index = 0;
+            foreach (ComboBox comboxBox in ComboBoxes)
+            {
+                foreach (string r in Reg)
+                {
+                    comboxBox.Items.Add(r);
+                }
+                comboxBox.SelectedIndex = index++;
+            }
+            //Initial RegPath textBox
+            TextBoxes.Add(textBox_RegPath1);
+            TextBoxes.Add(textBox_RegPath2);
+            TextBoxes.Add(textBox_RegPath3);
+            comboBox_RegPath1.SelectedIndex = 2;
+            textBox_RegPath1.Text = ("\\software\\Dynamsoft");
+            //textBox_RegPath1.Text = ("\\software\\Microsoft\\Windows\\CurrentVersion\\Test");
 
             //register monitor
-            Microsoft.Win32.RegistryKey _Key = Microsoft.Win32.Registry.CurrentUser;
+            //            Microsoft.Win32.RegistryKey _Key = Microsoft.Win32.Registry.CurrentUser;
             //_Key = _Key.OpenSubKey("SoftWare");
             //_Key = _Key.OpenSubKey("Microsoft");
             //_Key = _Key.OpenSubKey("Windows");
             //_Key = _Key.OpenSubKey("CurrentVersion");
             //_Key = _Key.OpenSubKey("Test");
-            _Key = _Key.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Test");
-            MonitorWindowsReg T;
-            MonitorWindowsReg T2;
+            //            _Key = _Key.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Test");
 
-            T = new MonitorWindowsReg(_Key);
-            T.UpReg += new MonitorWindowsReg.UpdataReg(T__UpdateReg);
-            T.Star();
-            Microsoft.Win32.RegistryKey _Key2 = Microsoft.Win32.Registry.CurrentUser;
-            _Key2 = _Key2.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Test\\22");
-            T2 = new MonitorWindowsReg(_Key2);
-            T2.UpReg += new MonitorWindowsReg.UpdataReg(T__UpdateReg);
-            T2.Star();
+            //CreateMonitor(_Key);
+
+            //           MonitorWindowsReg tmpT = new MonitorWindowsReg(_Key);
+
+
+            InitialMonitor(comboBox_RegPath1.SelectedItem.ToString() + textBox_RegPath1.Text);
+            //tmpT.UpReg += new MonitorWindowsReg.UpdataReg(T__UpdateReg);
+            //tmpT.Star();
+            //TS[tmpT._Text] = tmpT;
+            if(TS.Count != 0)
+            {
+                foreach (TextBox textBox in TextBoxes)
+                {
+                    textBox.Enabled = false;
+                }
+            }
+
 
         }
-        public void CreateMonitor(MonitorWindowsReg T, RegistryKey key)
+
+        RegistryKey GetRegistryKey(string text)
         {
-            T = new MonitorWindowsReg(key);
-            T.UpReg += new MonitorWindowsReg.UpdataReg(T__UpdateReg);
+            string[] _SubKey = text.Split('\\');
+            Microsoft.Win32.RegistryKey _Key = Microsoft.Win32.Registry.CurrentUser;
+            switch (_SubKey[0])
+            {
+                case "HKEY_CLASSES_ROOT":
+                    _Key = Microsoft.Win32.Registry.ClassesRoot;
+                    break;
+                case "HKEY_CURRENT_USER":
+                    _Key = Microsoft.Win32.Registry.CurrentUser;
+                    break;
+                case "HKEY_LOCAL_MACHINE":
+                    _Key = Microsoft.Win32.Registry.LocalMachine;
+                    break;
+                case "HKEY_USERS":
+                    _Key = Microsoft.Win32.Registry.Users;
+                    break;
+                case "HKEY_CURRENT_CONFIG":
+                    _Key = Microsoft.Win32.Registry.CurrentConfig;
+                    break;
+                default:
+                    break;
+            }
+            _Key = _Key.OpenSubKey(String.Join("\\", _SubKey, 1, _SubKey.Length - 1));
+            return _Key;
         }
 
+        public void InitialMonitor(string text)
+        {
+            string[] tmpText = text.Split('\\');
+            //Trace.Assert(tmpText[1] != null);
+            if (tmpText.Length <= 1 || tmpText[1] == null || tmpText[1] == "") return; //no path input
+            // Monitor the upper level.
+            string upperText = String.Join("\\", tmpText, 0, tmpText.Length - 1);
+            if (TS.Count > 100)
+            {
+                MessageBox.Show("Monitor more than 100 keys!");
+                return;
+            }
+            if (TS[upperText] != null)
+            {
+                return;
+            }
+            Microsoft.Win32.RegistryKey _Key = GetRegistryKey(upperText);
+            if (_Key == null)
+            {
+                MessageBox.Show(text + " is not vaild path!");
+                return;
+            }
+
+            MonitorWindowsReg tmpT = new MonitorWindowsReg(_Key);
+            tmpT.UpReg += new MonitorWindowsReg.UpdataReg(T__UpdateReg);
+            tmpT.Star();
+            TS.Add(upperText, tmpT);
+            // Monitor the current level recur.
+            CreateMonitor(text);
+        }
+        public void CreateMonitor(string text)
+        {
+            string[] tmpText = text.Split('\\');
+            //Trace.Assert(tmpText[1] != null);
+            if (tmpText.Length <=1|| tmpText[1] == null || tmpText[1] == "") return; //no path input
+
+            if (TS.Count > 100)
+            {
+                MessageBox.Show("Monitor more than 100 keys!");
+                return;
+            }
+            if (TS[text] != null)
+            {
+                return;
+            }
+            Microsoft.Win32.RegistryKey _Key = GetRegistryKey(text);
+            if(_Key == null)
+            {
+                //MessageBox.Show(text + " is not vaild path!");
+                return;
+            }
+
+            MonitorWindowsReg tmpT = new MonitorWindowsReg(_Key);
+            tmpT.UpReg += new MonitorWindowsReg.UpdataReg(T__UpdateReg);
+            tmpT.Star();
+            TS.Add(text, tmpT);
+ 
+            foreach (string key in _Key.GetSubKeyNames())
+            {
+                CreateMonitor(text + '\\' + key);
+            }
+        }
+        public void RemoveMonitor(string text)
+        {
+            if (TS[text] == null)
+                return;
+
+
+            Microsoft.Win32.RegistryKey _Key = GetRegistryKey(text);
+            if(_Key!=null)
+            foreach (string key in _Key.GetSubKeyNames())
+            {
+                RemoveMonitor(text + '\\' + key);
+            }
+            ((MonitorWindowsReg)TS[text]).Stop();
+            TS.Remove(text);
+        }
         //step1 记下测试环境，操作系统，x86/x64, browser
 
         public string HKLM_GetString(string path, string key)
@@ -305,20 +439,6 @@ namespace WindowsFormsApplication1
             Note_box.Clear();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            RegistryKey rk = Registry.CurrentUser;
-
-          
-            // Retrieve all the subkeys for the specified key.
-            String names = rk.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders").GetValue("My Music").ToString();
-                String a = System.Environment.SystemDirectory;
-            Note_box.AppendText("Subkeys of " + rk.Name);
-            Note_box.AppendText("-----------------------------------------------");
-            Note_box.AppendText(names);
-            Note_box.AppendText(a);
-              //  Console.ReadKey();
-        }
         delegate void RegAppendTextCallback(string text);
 
         private void RegAppendText(string text)
@@ -333,28 +453,82 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                this.richTextBox_Reg.AppendText(text);
+                this.richTextBox_Reg.AppendText(DateTime.Now.ToLocalTime().ToString()+':'+text);
+            }
+        }
+
+        void recurAppendNewKeyValue(string NewKey)
+        {
+            Microsoft.Win32.RegistryKey _Key = GetRegistryKey(NewKey);
+            if (_Key == null)
+            {
+                //MessageBox.Show(text + " is not vaild path!");
+                return;
+            }
+            RegAppendText("Create new key: " + NewKey + '\n');
+            foreach (string value in _Key.GetValueNames())
+            {
+                RegAppendText("Create new value: " + value + " with data " + _Key.GetValue(value).ToString() + '\n');
+            }
+            foreach (string key in _Key.GetSubKeyNames())
+            {
+                recurAppendNewKeyValue(NewKey + '\\' + key);
+ 
             }
         }
         void T__UpdateReg(string OldText, object OldValue, string NewText, object NewValue)
         {
             object Old = OldValue;
             object New = NewValue;
-            if (Old == null) Old = "";
-            if (New == null) New = "";
-
+            if (Old == null || Old.ToString() == "") Old = "null";
+            if (New == null || New.ToString() == "") New = "null";
+            string[] nameParts = NewText.Split('\\');
+            if(nameParts.Length>2 && nameParts[nameParts.Length-1] == "")
+            NewText = String.Join("\\", nameParts, 0, nameParts.Length-1);
             //create value
             if (OldText == "" && NewText != "")
             {
-                RegAppendText("Create new value: " + NewText+'\n');
+                if (NewValue == null)
+                {
+                    if(TS[NewText] != null)
+                    {
+                        RegAppendText("Delete old key: " + NewText + '\n');
+                        RemoveMonitor(NewText);
+                    }
+                    return;
+                }
+                    
+                if(NewValue.ToString() == "_key_")
+                {
+                    recurAppendNewKeyValue(NewText);
+                    //RegAppendText("Create new key: " + NewText+'\n');
+                    //recur key value
+
+                    CreateMonitor(NewText);
+                }
+                else
+                {
+                    RegAppendText("Create new value: " + NewText + " with data " + New.ToString() + '\n');
+                }
+
             }
             else if (OldText != "" && NewText == "")
             {
-                RegAppendText("Delete old value: " + OldText + '\n');
+                if (OldValue == null)
+                    return;
+                if (OldValue.ToString() == "_key_")
+                {
+                    RegAppendText("Delete old key: " + OldText + '\n');
+                    RemoveMonitor(OldText);
+                }
+                else
+                {
+                    RegAppendText("Delete old value: " + OldText + '\n');
+                }
             }
             else if (OldText != "" && NewText == OldText)
             {
-                RegAppendText("Data of "+NewText+ " update from "+ Old.ToString() + " to "+ New.ToString() + '\n');
+                RegAppendText("Update data of "+NewText+ " from "+ Old.ToString() + " to "+ New.ToString() + '\n');
             }else
             {
                 RegAppendText("NewText: " + NewText + "OldText: " + OldText + " OldValue: " + Old.ToString() + " NewValue: " + New.ToString() + '\n');
@@ -363,25 +537,57 @@ namespace WindowsFormsApplication1
                 //MessageBox.Show(OldText + ":" + Old.ToString(), NewText + ":" + New.ToString());
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button_StopMon(object sender, EventArgs e)
         {
-  //          Microsoft.Win32.RegistryKey _Key = Microsoft.Win32.Registry.CurrentUser;
-  //          _Key = _Key.OpenSubKey("SoftWare");
-  //          _Key = _Key.OpenSubKey("Microsoft");
-  //          _Key = _Key.OpenSubKey("Windows");
-  //          _Key = _Key.OpenSubKey("CurrentVersion");
-  //          _Key = _Key.OpenSubKey("Test");
-  //          //_Key = _Key.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Test");
-  //          T = new MonitorWindowsReg(_Key);
-  //          T.UpReg += new MonitorWindowsReg.UpdataReg(T__UpdateReg);
-  //          T.Star();
+            if (TS.Count == 0)
+            {
+                MessageBox.Show("Register text not been monitoring!");
+                return;
+            }
+            foreach (string Key in new List<object>(TS.Keys.Cast<object>()))
+                //foreach (string Key in TS.Keys)//error: Collection was modified; enumeration operation may not exec
+            {
+                RemoveMonitor(Key);
+            }
+
+            Trace.Assert(TS.Count == 0);
+                for (int i = 0; i < TextBoxes.Count; i++)
+                //foreach (TextBox textBox in TextBoxes)
+            {
+                    ComboBoxes[i].Enabled = true;
+                    TextBoxes[i].Enabled = true;
+                }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void button_StartMon(object sender, EventArgs e)
         {
-   //         T.Stop();
+            if (TS.Count > 0)
+            {
+                MessageBox.Show("Register text has already been monitoring!");
+                return;
+            }
+            for (int i = 0; i < TextBoxes.Count; i++)
+            //foreach (TextBox textBox in TextBoxes)
+            {
+                InitialMonitor(ComboBoxes[i].SelectedItem.ToString() + TextBoxes[i].Text);
+            }
+            if (TS.Count > 0)
+            {
+                for (int i = 0; i < TextBoxes.Count; i++)
+                {
+                    ComboBoxes[i].Enabled = false;
+                    TextBoxes[i].Enabled = false;
+                }
+            }else
+            {
+                MessageBox.Show("No vaild path has been monitoring!");
+            }
         }
 
+        private void button_Clear_Click(object sender, EventArgs e)
+        {
+            richTextBox_Reg.Clear();
+        }
     }
 }
 

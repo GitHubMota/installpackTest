@@ -62,9 +62,16 @@
             this.TextBox_ServiceDir_Path = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.comboBox_RegPath3 = new System.Windows.Forms.ComboBox();
+            this.comboBox_RegPath2 = new System.Windows.Forms.ComboBox();
+            this.comboBox_RegPath1 = new System.Windows.Forms.ComboBox();
+            this.label_RegPath = new System.Windows.Forms.Label();
+            this.textBox_RegPath3 = new System.Windows.Forms.TextBox();
+            this.textBox_RegPath2 = new System.Windows.Forms.TextBox();
+            this.textBox_RegPath1 = new System.Windows.Forms.TextBox();
+            this.richTextBox_Reg = new System.Windows.Forms.RichTextBox();
+            this.button_StopMonitor = new System.Windows.Forms.Button();
+            this.button_StartMonitor = new System.Windows.Forms.Button();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.fileSystemWatcher2 = new System.IO.FileSystemWatcher();
             this.fileSystemWatcher3 = new System.IO.FileSystemWatcher();
@@ -73,7 +80,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.Note_box = new System.Windows.Forms.RichTextBox();
-            this.richTextBox_Reg = new System.Windows.Forms.RichTextBox();
+            this.button_Clear = new System.Windows.Forms.Button();
             this.GroupBox_1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -216,7 +223,7 @@
             this.tabControl2.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(469, 525);
+            this.tabControl2.Size = new System.Drawing.Size(511, 525);
             this.tabControl2.TabIndex = 18;
             // 
             // tabPage3
@@ -241,7 +248,7 @@
             this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage3.Size = new System.Drawing.Size(461, 499);
+            this.tabPage3.Size = new System.Drawing.Size(503, 499);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -416,48 +423,110 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.button_Clear);
+            this.tabPage4.Controls.Add(this.comboBox_RegPath3);
+            this.tabPage4.Controls.Add(this.comboBox_RegPath2);
+            this.tabPage4.Controls.Add(this.comboBox_RegPath1);
+            this.tabPage4.Controls.Add(this.label_RegPath);
+            this.tabPage4.Controls.Add(this.textBox_RegPath3);
+            this.tabPage4.Controls.Add(this.textBox_RegPath2);
+            this.tabPage4.Controls.Add(this.textBox_RegPath1);
             this.tabPage4.Controls.Add(this.richTextBox_Reg);
-            this.tabPage4.Controls.Add(this.button5);
-            this.tabPage4.Controls.Add(this.button4);
-            this.tabPage4.Controls.Add(this.button1);
+            this.tabPage4.Controls.Add(this.button_StopMonitor);
+            this.tabPage4.Controls.Add(this.button_StartMonitor);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage4.Size = new System.Drawing.Size(461, 499);
+            this.tabPage4.Size = new System.Drawing.Size(503, 499);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // comboBox_RegPath3
             // 
-            this.button5.Location = new System.Drawing.Point(284, 248);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.comboBox_RegPath3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_RegPath3.FormattingEnabled = true;
+            this.comboBox_RegPath3.Location = new System.Drawing.Point(31, 85);
+            this.comboBox_RegPath3.Name = "comboBox_RegPath3";
+            this.comboBox_RegPath3.Size = new System.Drawing.Size(142, 20);
+            this.comboBox_RegPath3.TabIndex = 6;
             // 
-            // button4
+            // comboBox_RegPath2
             // 
-            this.button4.Location = new System.Drawing.Point(35, 219);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.comboBox_RegPath2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_RegPath2.FormattingEnabled = true;
+            this.comboBox_RegPath2.Location = new System.Drawing.Point(31, 59);
+            this.comboBox_RegPath2.Name = "comboBox_RegPath2";
+            this.comboBox_RegPath2.Size = new System.Drawing.Size(142, 20);
+            this.comboBox_RegPath2.TabIndex = 6;
             // 
-            // button1
+            // comboBox_RegPath1
             // 
-            this.button1.Location = new System.Drawing.Point(35, 248);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(139, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "RegisterMonitor";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.comboBox_RegPath1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_RegPath1.FormattingEnabled = true;
+            this.comboBox_RegPath1.Location = new System.Drawing.Point(29, 33);
+            this.comboBox_RegPath1.Name = "comboBox_RegPath1";
+            this.comboBox_RegPath1.Size = new System.Drawing.Size(144, 20);
+            this.comboBox_RegPath1.TabIndex = 6;
+            // 
+            // label_RegPath
+            // 
+            this.label_RegPath.AutoSize = true;
+            this.label_RegPath.Location = new System.Drawing.Point(29, 12);
+            this.label_RegPath.Name = "label_RegPath";
+            this.label_RegPath.Size = new System.Drawing.Size(95, 12);
+            this.label_RegPath.TabIndex = 5;
+            this.label_RegPath.Text = "Register Path: ";
+            // 
+            // textBox_RegPath3
+            // 
+            this.textBox_RegPath3.Location = new System.Drawing.Point(179, 84);
+            this.textBox_RegPath3.Name = "textBox_RegPath3";
+            this.textBox_RegPath3.Size = new System.Drawing.Size(317, 21);
+            this.textBox_RegPath3.TabIndex = 4;
+            // 
+            // textBox_RegPath2
+            // 
+            this.textBox_RegPath2.Location = new System.Drawing.Point(179, 58);
+            this.textBox_RegPath2.Name = "textBox_RegPath2";
+            this.textBox_RegPath2.Size = new System.Drawing.Size(317, 21);
+            this.textBox_RegPath2.TabIndex = 4;
+            // 
+            // textBox_RegPath1
+            // 
+            this.textBox_RegPath1.Location = new System.Drawing.Point(179, 32);
+            this.textBox_RegPath1.Name = "textBox_RegPath1";
+            this.textBox_RegPath1.Size = new System.Drawing.Size(319, 21);
+            this.textBox_RegPath1.TabIndex = 4;
+            // 
+            // richTextBox_Reg
+            // 
+            this.richTextBox_Reg.Location = new System.Drawing.Point(29, 165);
+            this.richTextBox_Reg.Name = "richTextBox_Reg";
+            this.richTextBox_Reg.Size = new System.Drawing.Size(469, 201);
+            this.richTextBox_Reg.TabIndex = 3;
+            this.richTextBox_Reg.Text = "";
+            // 
+            // button_StopMonitor
+            // 
+            this.button_StopMonitor.Location = new System.Drawing.Point(124, 136);
+            this.button_StopMonitor.Name = "button_StopMonitor";
+            this.button_StopMonitor.Size = new System.Drawing.Size(75, 23);
+            this.button_StopMonitor.TabIndex = 2;
+            this.button_StopMonitor.Text = "Stop";
+            this.button_StopMonitor.UseVisualStyleBackColor = true;
+            this.button_StopMonitor.Click += new System.EventHandler(this.button_StopMon);
+            // 
+            // button_StartMonitor
+            // 
+            this.button_StartMonitor.Location = new System.Drawing.Point(29, 136);
+            this.button_StartMonitor.Name = "button_StartMonitor";
+            this.button_StartMonitor.Size = new System.Drawing.Size(75, 23);
+            this.button_StartMonitor.TabIndex = 1;
+            this.button_StartMonitor.Text = "Start";
+            this.button_StartMonitor.UseVisualStyleBackColor = true;
+            this.button_StartMonitor.Click += new System.EventHandler(this.button_StartMon);
             // 
             // fileSystemWatcher1
             // 
@@ -524,13 +593,15 @@
             this.Note_box.TabIndex = 0;
             this.Note_box.Text = "";
             // 
-            // richTextBox_Reg
+            // button_Clear
             // 
-            this.richTextBox_Reg.Location = new System.Drawing.Point(5, 12);
-            this.richTextBox_Reg.Name = "richTextBox_Reg";
-            this.richTextBox_Reg.Size = new System.Drawing.Size(408, 201);
-            this.richTextBox_Reg.TabIndex = 3;
-            this.richTextBox_Reg.Text = "";
+            this.button_Clear.Location = new System.Drawing.Point(217, 135);
+            this.button_Clear.Name = "button_Clear";
+            this.button_Clear.Size = new System.Drawing.Size(75, 23);
+            this.button_Clear.TabIndex = 7;
+            this.button_Clear.Text = "Clear";
+            this.button_Clear.UseVisualStyleBackColor = true;
+            this.button_Clear.Click += new System.EventHandler(this.button_Clear_Click);
             // 
             // Form1
             // 
@@ -551,6 +622,7 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher3)).EndInit();
@@ -603,10 +675,17 @@
         private System.Windows.Forms.RichTextBox Note_box;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button_StopMonitor;
+        private System.Windows.Forms.Button button_StartMonitor;
         private System.Windows.Forms.RichTextBox richTextBox_Reg;
+        private System.Windows.Forms.Label label_RegPath;
+        private System.Windows.Forms.TextBox textBox_RegPath1;
+        private System.Windows.Forms.ComboBox comboBox_RegPath1;
+        private System.Windows.Forms.TextBox textBox_RegPath3;
+        private System.Windows.Forms.TextBox textBox_RegPath2;
+        private System.Windows.Forms.ComboBox comboBox_RegPath3;
+        private System.Windows.Forms.ComboBox comboBox_RegPath2;
+        private System.Windows.Forms.Button button_Clear;
     }
 }
 

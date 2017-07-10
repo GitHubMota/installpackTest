@@ -36,6 +36,8 @@ namespace WindowsFormsApplication1
         private IntPtr _OpenIntPtr = IntPtr.Zero;
         private RegistryKey _OpenReg;
         private Hashtable _Date = new Hashtable();
+        private Hashtable _DateKey = new Hashtable();
+        public string _Text;
         /// <summary>
         /// 监视注册表 
         /// </summary>
@@ -72,8 +74,13 @@ namespace WindowsFormsApplication1
                 default:
                     break;
             }
-            string _Text = MonitorKey.Name.Remove(0, MonitorKey.Name.IndexOf('\\') + 1);
+            //_Text = MonitorKey.Name;
+            _Text = MonitorKey.Name.Remove(0, MonitorKey.Name.IndexOf('\\') + 1);
             RegOpenKey(_MonitorIntPrt, _Text, ref _OpenIntPtr);
+        }
+        public string GetRegFullName()
+        {
+            return _OpenReg.Name;
         }
         /// <summary>
         /// 开始监控
@@ -96,10 +103,20 @@ namespace WindowsFormsApplication1
         private void GetOldRegData()
         {
             _Date.Clear();
-            string[] OldName = _OpenReg.GetValueNames();
+            _DateKey.Clear();
+            string[] OldName = new String[1]; ;
+            try { OldName = _OpenReg.GetValueNames(); } catch
+            {
+                if (OldName == null || OldName[0] == null) return;
+            }
             for (int i = 0; i != OldName.Length; i++)
             {
                 _Date.Add(OldName[i], _OpenReg.GetValue(OldName[i]));
+            }
+            string[] OldKey = _OpenReg.GetSubKeyNames();
+            for (int i = 0; i != OldKey.Length; i++)
+            {
+                _DateKey.Add(OldKey[i], "");
             }
         }
         /// <summary>
@@ -123,6 +140,7 @@ namespace WindowsFormsApplication1
             {
                 //System.Threading.Thread.Sleep(1000);
                 RegNotifyChangeKeyValue(_OpenIntPtr, false, REG_NOTIFY_CHANGE_NAME + REG_NOTIFY_CHANGE_ATTRIBUTES + REG_NOTIFY_CHANGE_LAST_SET + REG_NOTIFY_CHANGE_SECURITY, 0, false);
+                System.Threading.Thread.Sleep(0);
                 GetUpdate();
             }
         }
@@ -131,76 +149,94 @@ namespace WindowsFormsApplication1
         /// </summary>
         private void GetUpdate()
         {
-            string[] NewName = new String[1];
+                string[] NewName = new String[1];
+                try
+                {
+                    NewName = _OpenReg.GetValueNames();  //获取当前的名称
+                }
+                catch { }//Rename cause a IO Exception
+            foreach (string Key in _Date.Keys)
+            {
+                for (int i = 0; i != NewName.Length; i++)     //循环比较
+                {
+                    if (Key == NewName[i])
+                    {
+                        if (_Date[NewName[i]].ToString() != _OpenReg.GetValue(NewName[i]).ToString())
+                        {
+                            //修改
+                            if (UpReg != null) UpReg(_OpenReg.Name + '\\' + NewName[i], _Date[NewName[i]], _OpenReg.Name + '\\' + NewName[i], _OpenReg.GetValue(NewName[i]));
+                        }
+                        NewName[i] = "nullbug"; //标记该value已被比较, value name can be ""
+                        break;
+                    }
+                    else if (i == NewName.Length - 1)
+                    {
+                        if (UpReg != null) UpReg(_OpenReg.Name + '\\' + Key, _Date[Key], "", "");      //删除 
+                    }
+                }
+                if (0 == NewName.Length)
+                {
+                    if (UpReg != null) UpReg(_OpenReg.Name + '\\' + Key, _Date[Key], "", "");      //删除 
+                }
+                }
+                for (int i = 0; i != NewName.Length; i++)     //循环比较
+                {
+                    if (NewName[i] != "nullbug")
+                    {
+                        if (UpReg != null) UpReg("", "", _OpenReg.Name + '\\' + NewName[i], _OpenReg.GetValue(NewName[i]));   //添加
+                    }
+                }
+
+            //subkeys
+            string[] NewKey = new String[1];
             try
             {
-                NewName = _OpenReg.GetValueNames();  //获取当前的名称
-            } catch //Rename cause a IO Exception
-            {
-
+                NewKey = _OpenReg.GetSubKeyNames();  //获取当前的名称
             }
-
-                if (NewName.Length < _Date.Count)    //如果当前少了说明是删除
+            catch {
+                if (NewKey[0] == null)
                 {
-                    foreach (string Key in _Date.Keys)  //循环刚开始的记录的名称
+                    GetOldRegData();
+                    //TODO HOW TO avoid reach here
+                    //MessageBox.Show(_OpenReg.Name + " get null reg key!");
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show(_OpenReg.Name + " :" + NewKey);
+                    return;
+                }
+
+            }//Rename cause a IO Exception
+            foreach (string Key in _DateKey.Keys)
+            {
+                for (int i = 0; i != NewKey.Length; i++)     //循环比较
+                {
+                    if (Key == NewKey[i])
                     {
-                        bool _Del = true;
-                        for (int i = 0; i != NewName.Length; i++)     //循环比较
-                        {
-                            if (Key == NewName[i])
-                            {
-                                _Del = false;
-                                break;
-                            }
-                        }
-                        if (_Del == true)
-                        {
-                            if (UpReg != null) UpReg(Key, _Date[Key], "", "");      //删除 
-                            GetOldRegData();
-                            return;
-                        }
+                        NewKey[i] = ""; //标记该value已被比较
+                        break;
+                    }
+                    else if (i == NewKey.Length - 1)
+                    {
+                        if (UpReg != null) UpReg(_OpenReg.Name + '\\' + Key, "_key_", "", "");      //删除 
                     }
                 }
-                for (int i = 0; i != NewName.Length; i++)
+                if (0 == NewKey.Length)
                 {
-                    if (_Date[NewName[i]] == null)
-                    {
-
-
-                        if (NewName.Length == _Date.Count)    //如果前后数量相同说明是重命名
-                        {
-                            foreach (string Key in _Date.Keys)  //循环刚开始的记录的名称
-                            {
-                                bool _Del = true;
-                                for (int j = 0; j != NewName.Length; j++)     //循环比较
-                                {
-                                    if (Key == NewName[j])
-                                    {
-                                        _Del = false;
-                                        break;
-                                    }
-                                }
-                                if (_Del == true)
-                                {
-                                    if (UpReg != null) UpReg(Key, _Date[Key], "", "");      //删除 
-                                    continue;
-                                }
-                            }
-                        }
-                        if (UpReg != null) UpReg("", "", NewName[i], _OpenReg.GetValue(NewName[i]));   //添加
-                        GetOldRegData();
-                        return;
-                    }
-                    else
-                    {
-                        if (_Date[NewName[i]].ToString() == _OpenReg.GetValue(NewName[i]).ToString()) continue;
-                        //修改
-                        if (UpReg != null) UpReg(NewName[i], _Date[NewName[i]], NewName[i], _OpenReg.GetValue(NewName[i]));
-                        GetOldRegData();
-                        return;
-                    }
+                    if (UpReg != null) UpReg(_OpenReg.Name + '\\' + Key, "_key_", "", "");      //删除 
                 }
-            
+            }
+            for (int i = 0; i != NewKey.Length; i++)     //循环比较
+            {
+                if (NewKey[i] != "")
+                {
+                    if (UpReg != null) UpReg("", "", _OpenReg.Name + '\\' + NewKey[i], "_key_");   //添加
+
+                }
+            }
+            GetOldRegData();
+                return;
         }
         public delegate void UpdataReg(string OldText, object OldValue, string NewText, object NewValue);
         public event UpdataReg UpReg;
