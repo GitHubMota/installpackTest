@@ -243,13 +243,6 @@ namespace WindowsFormsApplication1
 
         }
 
-       
-        //############## directory watcher###################################################
-        //service directory
-        private void fileSystemWatcher1_Changed(object sender, FileSystemEventArgs e)
-        {
-
-        }
 
         private void fileSystemWatcher1_Created(object sender, FileSystemEventArgs e)
         {
@@ -404,40 +397,7 @@ namespace WindowsFormsApplication1
         {
             fileSystemWatcher4.Path = TextBox_UserPath.Text;
         }
-        // notebox################################################################
-        private string MergeRTF(string rtfFile1, string rtfFile2)
-        {
-            System.IO.FileStream fs1 = new System.IO.FileStream(rtfFile1, System.IO.FileMode.OpenOrCreate);
-            //System.IO.FileStream fs2 = new System.IO.FileStream(rtfFile2, System.IO.FileMode.OpenOrCreate);
-            RichTextBox richTextBox1 = new RichTextBox();
-            //RichTextBox richTextBox2 = new RichTextBox();
-            richTextBox1.LoadFile(fs1, RichTextBoxStreamType.PlainText);
-            //richTextBox2.LoadFile(fs2, RichTextBoxStreamType.PlainText);
-            fs1.Close();
-            //fs2.Close();
 
-            string f1 = richTextBox1.Rtf;
-            string f2 = rtfFile2;
-            string pre = @"{\rtf1";
-            string end = @"}";
-            return pre + f1 + f2 + end;
-        }
-
-        private void button_SaveNote_Click(object sender, EventArgs e)
-        {
-            //Note_box.SaveFile( "c:\\.note_temp.rtf", RichTextBoxStreamType.PlainText);
-            //FileStream f = new FileStream("C:\\aa.rtf", FileMode.Create, FileAccess.Write);
-            //File.WriteAllText("D:\\123.rtf", Note_box.Rtf);
-            //File.AppendAllText("D:\\123.rtf", Note_box.Rtf);
-            RichTextBox richTextBox1 = new RichTextBox();
-            richTextBox1.Rtf = MergeRTF("c:\\note.rtf", Note_box.Rtf);
-            richTextBox1.SaveFile("c:\\note.rtf", RichTextBoxStreamType.PlainText);
-        }
-
-        private void button_ClearNote_Click(object sender, EventArgs e)
-        {
-            Note_box.Clear();
-        }
 
         delegate void RegAppendTextCallback(string text);
 
@@ -587,6 +547,42 @@ namespace WindowsFormsApplication1
         private void button_Clear_Click(object sender, EventArgs e)
         {
             richTextBox_Reg.Clear();
+        }
+
+        private void DirWatcher_Clearall_Click(object sender, EventArgs e)
+        {
+            richTextBox_ServiceDir.Clear();
+            richTextBox_InstalledDir.Clear();
+            richTextBox_startMenu.Clear();
+            richTextBox_UserPath.Clear();
+        }
+
+        private void Button_openInstallPkg_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", textBox_Path.Text);
+        }
+
+        private void CtlPanel_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process p = new System.Diagnostics.Process();
+            p.StartInfo.FileName = "cmd.exe";
+            p.StartInfo.UseShellExecute = false;    //是否使用操作系统shell启动
+            p.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息
+            p.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息
+            p.StartInfo.RedirectStandardError = true;//重定向标准错误输出
+            p.StartInfo.CreateNoWindow = true;//不显示程序窗口
+            p.Start();//启动程序
+
+            //向cmd窗口发送输入信息
+            p.StandardInput.WriteLine("rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl" + "&exit");
+
+            p.StandardInput.AutoFlush = true;
+            //p.StandardInput.WriteLine("exit");
+            //向标准输入写入要执行的命令。这里使用&是批处理命令的符号，表示前面一个命令不管是否执行成功都执行后面(exit)命令，如果不执行exit命令，后面调用ReadToEnd()方法会假死
+            //同类的符号还有&&和||前者表示必须前一个命令执行成功才会执行后面的命令，后者表示必须前一个命令执行失败才会执行后面的命令
+
+            p.WaitForExit();//等待程序执行完退出进程
+            p.Close();
         }
     }
 }

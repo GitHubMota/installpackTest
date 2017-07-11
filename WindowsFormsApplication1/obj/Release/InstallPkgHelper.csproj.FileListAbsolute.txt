@@ -1,0 +1,10 @@
+F:\installPack_git\installpackTest\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.exe.config
+F:\installPack_git\installpackTest\WindowsFormsApplication1\obj\Release\Interop.Shell32.dll
+F:\installPack_git\installpackTest\WindowsFormsApplication1\obj\Release\InstallPkgHelper.csproj.ResolveComReference.cache
+F:\installPack_git\installpackTest\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.exe
+F:\installPack_git\installpackTest\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.pdb
+F:\installPack_git\installpackTest\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.exe
+F:\installPack_git\installpackTest\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.pdb
+F:\installPack_git\installpackTest\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.Form1.resources
+F:\installPack_git\installpackTest\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.Properties.Resources.resources
+F:\installPack_git\installpackTest\WindowsFormsApplication1\obj\Release\InstallPkgHelper.csproj.GenerateResource.Cache
