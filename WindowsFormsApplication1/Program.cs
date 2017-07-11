@@ -181,8 +181,8 @@ namespace WindowsFormsApplication1
                 }
                 for (int i = 0; i != NewName.Length; i++)     //循环比较
                 {
-                    if (NewName[i] != "nullbug")
-                    {
+                if (NewName[i] != "nullbug") //NewName[i] != null && 
+                {
                         if (UpReg != null) UpReg("", "", _OpenReg.Name + '\\' + NewName[i], _OpenReg.GetValue(NewName[i]));   //添加
                     }
                 }

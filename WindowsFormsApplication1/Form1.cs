@@ -64,8 +64,10 @@ namespace WindowsFormsApplication1
             TextBoxes.Add(textBox_RegPath1);
             TextBoxes.Add(textBox_RegPath2);
             TextBoxes.Add(textBox_RegPath3);
-            comboBox_RegPath1.SelectedIndex = 2;
+            comboBox_RegPath1.SelectedIndex = 1;
             textBox_RegPath1.Text = ("\\software\\Dynamsoft");
+            comboBox_RegPath2.SelectedIndex = 2;
+            textBox_RegPath2.Text = ("\\software\\Dynamsoft");
             //textBox_RegPath1.Text = ("\\software\\Microsoft\\Windows\\CurrentVersion\\Test");
 
             //register monitor
@@ -83,10 +85,11 @@ namespace WindowsFormsApplication1
 
 
             InitialMonitor(comboBox_RegPath1.SelectedItem.ToString() + textBox_RegPath1.Text);
+            InitialMonitor(comboBox_RegPath2.SelectedItem.ToString() + textBox_RegPath2.Text);
             //tmpT.UpReg += new MonitorWindowsReg.UpdataReg(T__UpdateReg);
             //tmpT.Star();
             //TS[tmpT._Text] = tmpT;
-            if(TS.Count != 0)
+            if (TS.Count != 0)
             {
                 foreach (TextBox textBox in TextBoxes)
                 {
@@ -199,7 +202,8 @@ namespace WindowsFormsApplication1
             {
                 RemoveMonitor(text + '\\' + key);
             }
-            ((MonitorWindowsReg)TS[text]).Stop();
+            try { ((MonitorWindowsReg)TS[text]).Stop(); } catch { }
+           
             TS.Remove(text);
         }
         //step1 记下测试环境，操作系统，x86/x64, browser
@@ -478,8 +482,12 @@ namespace WindowsFormsApplication1
                     return;
                 if (OldValue.ToString() == "_key_")
                 {
-                    RegAppendText("Delete old key: " + OldText + '\n');
-                    RemoveMonitor(OldText);
+                    if(TS[OldText] != null)
+                    {
+                        RegAppendText("Delete old key: " + OldText + '\n');
+                        RemoveMonitor(OldText);
+                    }
+
                 }
                 else
                 {
